@@ -24,7 +24,7 @@ declare module "s20n" {
     /** The type of the translate function. */
     type translateFunctionType = (path: string, defaultValue?: string) => string;
     /** The translate function. */
-    export const t: Readable<string>;
+    export const t: Readable<(path: string, fallback?: string) => string>;
 
     /** alias for t (translate) */
     export const _: typeof t;
