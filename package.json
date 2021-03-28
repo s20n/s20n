@@ -1,8 +1,9 @@
 {
   "name": "s20n",
   "svelte": "src/index.svelte",
-  "module": "index.mjs",
-  "main": "index.js",
+  "module": "./index.mjs",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build"
@@ -30,10 +31,11 @@
   "files": [
     "src",
     "index.mjs",
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "description": " Ultra lightweight svelternationalization (s20n) internationalization library. ",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {},
   "repository": {
     "type": "git",

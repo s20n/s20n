@@ -9,7 +9,7 @@ const name = pkg.name
 	.replace(/^\w/, m => m.toUpperCase())
 	.replace(/-\w/g, m => m[1].toUpperCase());
 
-const production = false;
+const production = true;
 
 export default {
 	input: 'src/index.svelte',
@@ -22,10 +22,7 @@ export default {
 		typescript({ sourceMap: !production }),
 		svelte({
 			preprocess: sveltePreprocess(),
-			dev: !production,
-			css: css => {
-				css.write("public/build/bundle.css");
-			}
+			dev: !production
 		}),
 		resolve()
 	]

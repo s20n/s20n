@@ -22,7 +22,9 @@
 		"paths": {
 			"$app/*": [".svelte/dev/runtime/app/*", ".svelte/build/runtime/app/*"],
 			"$lib/*": ["src/lib/*"]
-		}
+		},
+		"declaration": true,
+		"outDir": "public"
 	},
 	"files": ["src/index.svelte"]
 }
