@@ -1,19 +1,19 @@
-declare module "svelte-routing" {
+declare module "s20n" {
     import { SvelteComponentTyped } from 'svelte';
 
-    export interface RouterProps {
+    export interface S20nProps {
         /** An array of locales to load asynchronously. Note that they will all be loaded at once. */
         locales: string;
         /** Also default loaded language. */
         current?: string;
     }
     /** The S20n component provides internationalization for a Svelte app. */
-    export class S20n extends SvelteComponentTyped<RouterProps> {}
+    export class S20n extends SvelteComponentTyped<S20nProps> {}
 
     /** Describes a locale with the path to its json file and its name. */
     export type localeType = {path: string, name: string};
 
-    import { writable, get, derived } from 'svelte/store';
+    import { writable, derived } from 'svelte/store';
 
     /** The locale to fallback to if the current locale doesn't contain the requested translation. */
     export const fallbackLocale = writable<string>("en");
