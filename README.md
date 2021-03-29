@@ -7,9 +7,10 @@ Ultra lightweight svelternationalization (s20n) internationalization library.
 Install it from npm with
 
 ```bash
-npm install s20n
-
+npm install --save-dev s20n
 ```
+
+Note that as any imported svelte component, [it needs to get imported as a dev dependency](https://github.com/sveltejs/sapper-template#using-external-components).
 
 You'll need a locale folder, publicly accessible. Typically, this will be `public/locales/` or `static/locales/`. Your json files containing your translated strings will be there.
 
