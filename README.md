@@ -79,7 +79,7 @@ S20n supports markdown with [marked.js](https://marked.js.org/).
 Note that markdown is disabled by default, and you can enable it for a single string with
 
 ```svelte
-    <p>{$t("example.withMarkdown", null, { useMarkdown: true })}</p>
+    <p>{@html $t("example.withMarkdown", null, { useMarkdown: true })}</p>
 ```
 
 or globally by setting the `defaultTranslationParams` store:
@@ -90,3 +90,5 @@ or globally by setting the `defaultTranslationParams` store:
     $defaultTranslationParams.useMarkdown = true;
 </script>
 ```
+
+Note that when using markdown you need the `@html` tag in order for your html to be rendered by svelte.

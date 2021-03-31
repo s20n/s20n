@@ -23,6 +23,10 @@ declare module "s20n" {
 
     /** The options that can be passed to the translate function */
     export interface TranslationParams {
+        /**
+         * Use [marked](https://marked.js.org).
+         * Note that you need the `@html` tag in order for the html to be rendered correctly.
+         */
         useMarkdown: boolean;
     }
     /**

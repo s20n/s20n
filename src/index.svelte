@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
     import { writable, get, derived } from 'svelte/store';
-    const marked = require("marked");
+    import marked from "marked";
 
     /** The locale to fallback to if the current locale doesn't contain the requested translation. */
     export const fallbackLocale = writable<string>("en");
@@ -9,6 +9,10 @@
 
     /** The options that can be passed to the translate function */
     export interface TranslationParams {
+        /**
+         * Use [marked](https://marked.js.org).
+         * Note that you need the `@html` tag in order for the html to be rendered correctly.
+         */
         useMarkdown: boolean;
     }
     /** The default options passed to the translation function. Can be overwritten by setting the `params` argument. */
@@ -21,8 +25,7 @@
     /** The translate function. */
     export const t = derived<ReturnType<typeof writable>, translateFunctionType>(locale, () => {
         return function (path: string, defaultValue?: string, params?: TranslationParams): string {
-            let p: TranslationParams;
-            Object.assign(p, get(defaultTranslationParams));
+            let p: TranslationParams = Object.assign({}, get(defaultTranslationParams));
             Object.assign(p, params);
             if (p.useMarkdown) {
                 return marked(getTranslation(path, defaultValue));
