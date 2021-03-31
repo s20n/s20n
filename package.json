@@ -5,8 +5,7 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "build": "rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.1",
@@ -26,17 +25,20 @@
     "localization",
     "i10n",
     "internationalization",
-    "translation"
+    "translation",
+    "markdown",
+    "multiline"
   ],
   "files": [
     "src",
-    "index.mjs",
-    "index.js",
     "index.d.ts"
   ],
   "description": " Ultra lightweight svelternationalization (s20n) internationalization library. ",
-  "version": "0.3.3",
-  "dependencies": {},
+  "version": "0.4.0",
+  "dependencies": {
+    "json5": "^2.2.0",
+    "marked": "^2.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Marr11317/s20n.git"

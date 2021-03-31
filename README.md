@@ -65,3 +65,28 @@ To set the current locale, set the `locale` store. Here's an example of a button
 </script>
 <p on:click={toggleLanguage}>Toggle language</p>
 ```
+
+## Features
+
+### Multiline support
+
+S20n supports multiline translations with [json5](https://json5.org/). This makes it easy to have long translations.
+
+### Markdown
+
+S20n supports markdown with [marked.js](https://marked.js.org/).
+
+Note that markdown is disabled by default, and you can enable it for a single string with
+
+```svelte
+    <p>{$t("example.withMarkdown", null, { useMarkdown: true })}</p>
+```
+
+or globally by setting the `defaultTranslationParams` store:
+
+```svelte
+<script>
+    import { defaultTranslationParams } from "s20n";
+    $defaultTranslationParams.useMarkdown = true;
+</script>
+```

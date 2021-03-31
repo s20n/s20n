@@ -21,10 +21,20 @@ declare module "s20n" {
     /** The currently displayed locale. */
     export const locale: Writable<string>;
 
+    /** The options that can be passed to the translate function */
+    export interface TranslationParams {
+        useMarkdown: boolean;
+    }
+    /**
+     * The default options passed to the translation function. Can be overwritten by setting the `params` argument.
+     * @default { useMarkdown: false }
+     */
+    export const defaultTranslationParams: Writable<TranslationParams>;
+
     /** The type of the translate function. */
-    type translateFunctionType = (path: string, defaultValue?: string) => string;
+    type translateFunctionType = (path: string, defaultValue?: string, params?: TranslationParams) => string;
     /** The translate function. */
-    export const t: Readable<(path: string, fallback?: string) => string>;
+    export const t: Readable<translateFunctionType>;
 
     /** alias for t (translate) */
     export const _: typeof t;
