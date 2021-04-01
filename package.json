@@ -1,6 +1,7 @@
 {
   "name": "s20n",
   "svelte": "src/index.svelte",
+  "version": "0.4.3",
   "module": "./index.mjs",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -35,7 +36,6 @@
     "index.d.ts"
   ],
   "description": " Ultra lightweight svelternationalization (s20n) internationalization library. ",
-  "version": "0.4.3",
   "dependencies": {
     "json5": "^2.2.0",
     "marked": "^2.0.1"
