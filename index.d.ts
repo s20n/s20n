@@ -1,47 +1,52 @@
-declare module "s20n" {
-    import { SvelteComponentTyped } from 'svelte';
+export * from "./typings/index";
 
-    /** The props that can be passed to the S20n component. */
-    export interface S20nProps {
-        /** An array of locales to load asynchronously. Note that they will all be loaded at once. */
-        locales: localeType[];
-        /** Default loaded language. */
-        current?: string;
-    }
-    /** The S20n component provides internationalization for a Svelte app. */
-    export default class S20n extends SvelteComponentTyped<S20nProps> { }
+import { SvelteComponentTyped } from 'svelte';
+import { LanguageFile } from "./typings/index";
 
-    /** Describes a locale with the path to its json file and its name. */
-    export type localeType = {path: string, name: string};
-
-    import { Writable, Readable } from 'svelte/store';
-
-    /** The locale to fallback to if the current locale doesn't contain the requested translation. */
-    export const fallbackLocale: Writable<string>;
-    /** The currently displayed locale. */
-    export const locale: Writable<string>;
-
-    /** The options that can be passed to the translate function */
-    export interface TranslationParams {
-        /**
-         * Use [marked](https://marked.js.org).
-         * Note that you need the `@html` tag in order for the html to be rendered correctly.
-         */
-        useMarkdown: boolean;
-    }
-    /**
-     * The default options passed to the translation function. Can be overwritten by setting the `params` argument.
-     * @default { useMarkdown: false }
-     */
-    export const defaultTranslationParams: Writable<TranslationParams>;
-
-    /** The type of the translate function. */
-    type translateFunctionType = (path: string, defaultValue?: string, params?: TranslationParams) => string;
-    /** The translate function. */
-    export const t: Readable<translateFunctionType>;
-
-    /** alias for t (translate) */
-    export const _: typeof t;
-    /** alias for t */
-    export const translate: typeof t;
+/** The props that can be passed to the S20n component. */
+export interface S20nProps {
+    /** An array of locales to load asynchronously. */
+    locales: LanguageFile[];
 }
+
+/**
+ * The S20n component provides internationalization for a Svelte app.
+ *
+ * `src/routes/$layout.svelte` (with typescript):
+ *
+ * ```svelte
+ * <script lang="ts">
+ *     // Some imports...
+ *     import S20n, { LanguageFile } from "s20n";
+ *
+ *     // Some code...
+ *
+ *     const locales: LanguageFile[] = [
+ *         { path: "/static/locales/fr.json", name: "fr"},
+ *         { path: "/static/locales/en.json", name: "en"},
+ *         // other locales
+ *     ]
+ * </script>
+ *
+ * <S20n {locales}/>
+ *
+ * <--- Something more code --->
+ * ```
+ */
+export default class S20n extends SvelteComponentTyped<S20nProps> { }
+
+/** The props that can be passed to the T (aka translate) component. */
+export interface TProps {
+    /** The translation key. This is also the first parameter of the `t` aka translate function. */
+    key: string;
+
+    /**
+     * The fallback if nothing is found at the specified key. Neither in the loaded language nor in the fallback language.
+     */
+    fallback: string;
+}
+
+/**
+ * The T (Translate) component.
+ */
+export default class T extends SvelteComponentTyped<TProps> { }

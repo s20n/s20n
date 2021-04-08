@@ -21,19 +21,18 @@ You'll need a locale folder, publicly accessible. Typically, this will be `publi
 ```svelte
 <script lang="ts">
     // Some imports...
-    import S20n from "$lib/i18n.svelte";
-    import type { localeType } from "$lib/i18n.svelte";
+    import S20n, { LanguageFile } from "s20n";
 
     // Some code...
 
-    const locales: localeType[] = [
+    const locales: LanguageFile[] = [
         { path: "/static/locales/fr.json", name: "fr"},
         { path: "/static/locales/en.json", name: "en"},
         // other locales
     ]
 </script>
 
-<S20n current="en" {locales}/>
+<S20n {locales}/>
 <--- Something else --->
 ```
 
@@ -66,29 +65,3 @@ To set the current locale, set the `locale` store. Here's an example of a button
 <p on:click={toggleLanguage}>Toggle language</p>
 ```
 
-## Features
-
-### Multiline support
-
-S20n supports multiline translations with [json5](https://json5.org/). This makes it easy to have long translations.
-
-### Markdown
-
-S20n supports markdown with [marked.js](https://marked.js.org/).
-
-Note that markdown is disabled by default, and you can enable it for a single string with
-
-```svelte
-    <p>{@html $t("example.withMarkdown", null, { useMarkdown: true })}</p>
-```
-
-or globally by setting the `defaultTranslationParams` store:
-
-```svelte
-<script>
-    import { defaultTranslationParams } from "s20n";
-    $defaultTranslationParams.useMarkdown = true;
-</script>
-```
-
-Note that when using markdown you need the `@html` tag in order for your html to be rendered by svelte.
