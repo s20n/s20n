@@ -33,7 +33,7 @@ export interface S20nProps {
  * <--- Something more code --->
  * ```
  */
-export default class S20n extends SvelteComponentTyped<S20nProps> { }
+export class S20n extends SvelteComponentTyped<S20nProps> { }
 
 /** The props that can be passed to the T (aka translate) component. */
 export interface TProps {
@@ -49,4 +49,4 @@ export interface TProps {
 /**
  * The T (Translate) component.
  */
-export default class T extends SvelteComponentTyped<TProps> { }
+export class T extends SvelteComponentTyped<TProps> { }
