@@ -10,7 +10,7 @@ import { TranslationData } from "./types";
  * @param path Path to the file.
  * @param name Locale code aka shortened language name (en for english).
  */
-export async function privateLoadLocale(path: string, name: string): Promise<void> {
+async function privateLoadLocale(path: string, name: string): Promise<void> {
     return load(path).then((o: TranslationData | null) => {
         if (o) {
             const localesStoreValue = locales.get();
