@@ -9,11 +9,13 @@ import { isLoaded, loadLocale } from "./load";
  */
 export const locales: CustomWritable<Locales> = customWritable({});
 
-/** The currently displayed locale. */
-export const locale: CustomWritable<string> = customWritable("en", noop, (v: string) => {
+async function loadIfNotLoaded(v: string): Promise<void> {
     if (!isLoaded(v)) return loadLocale(v);
     else return Promise.resolve();
-});
+}
+
+/** The currently displayed locale. */
+export const locale: CustomWritable<string> = customWritable("en", noop, loadIfNotLoaded);
 
 /** The locale to fallback to if the current locale doesn't contain the requested translation. */
-export const fallbackLocale = customWritable<string>("en");
+export const fallbackLocale = customWritable<string>("en", noop, loadIfNotLoaded);

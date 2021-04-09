@@ -1,7 +1,6 @@
 
 import { LanguageFile } from "./types";
 import { fallbackLocale, locale, locales } from "./stores";
-import { loadLocale, privateLoadLocale } from "./load";
 
 
 /**
@@ -9,6 +8,7 @@ import { loadLocale, privateLoadLocale } from "./load";
  *
  * @export
  * @param files An array of path and language codes.
+ * @param readFromNavigator Read the default language from the navigator. Default is true.
  *
  * @example
  *
@@ -24,7 +24,7 @@ import { loadLocale, privateLoadLocale } from "./load";
  * initS20n(locales)
  * ```
  */
-export async function initS20n(files: LanguageFile[]): Promise<void> {
+export async function initS20n(files: LanguageFile[], defaultLanguage: boolean = true): Promise<void> {
     if (files.length) {
         const localesValue = locales.get();
 
@@ -36,17 +36,47 @@ export async function initS20n(files: LanguageFile[]): Promise<void> {
             }
         }
 
-        const first = files[0];
-        const result = privateLoadLocale(first.path, first.name).then(() => locale.set(first.name));
+        let navigatorLanguageSet = "";
+        if (defaultLanguage) {
+            const languageNames = files.map((f: LanguageFile) => f.name );
+            if (languageNames.includes(navigator.language)) {
+                locale.set(navigator.language);
+                navigatorLanguageSet = navigator.language;
+            }
+            else {
+                const navigatorLanguage = navigator.language.slice(0, 1);
+                if (languageNames.includes(navigatorLanguage)) {
+                    locale.set(navigator.language);
+                    navigatorLanguageSet = navigatorLanguage;
+                }
+            }
 
-        const second = files[1];
-        if (second) {
-            privateLoadLocale(second.path, second.name).then(() => fallbackLocale.set(second.name));
+            if (navigatorLanguageSet) {
+                const firstFileName = files[0].name;
+                if (navigatorLanguageSet === firstFileName) {
+                    fallbackLocale.set(files[1].name);
+                } else {
+                    fallbackLocale.set(firstFileName);
+                }
+            }
+            else {
+                console.warn("s20n: init: you have no translations for this user's language.");
+            }
         }
-        else {
-            console.error("s20n: initS20n: Only one language file given in argument 'files'. Are you sure this is what you wanted?")
+
+        if (!navigatorLanguageSet) {
+            const first = files[0];
+            const result = locale.set(first.name);
+
+            const second = files[1];
+            if (second) {
+                fallbackLocale.set(second.name);
+            }
+            else {
+                console.error("s20n: initS20n: Only one language file given in argument 'files'. Are you sure this is what you wanted?")
+            }
+            return result;
         }
-        return result;
     }
     else {
         console.error("s20n: initS20n: argument 'files' is empty.");
