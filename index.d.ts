@@ -1,7 +1,7 @@
-export * from "./typings/index";
+export * from "./typings/src/index";
 
 import { SvelteComponentTyped } from 'svelte';
-import { LanguageFile } from "./typings/index";
+import { LanguageFile } from "./typings/src/index";
 
 /** The props that can be passed to the S20n component. */
 export interface S20nProps {

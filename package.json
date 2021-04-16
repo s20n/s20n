@@ -4,7 +4,7 @@
   "module": "./index.mjs",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.0",
   "scripts": {
     "build": "rollup -c && tsc",
     "build:production": "rollup -c --environment INCLUDE_DEPS,BUILD:production && tsc",
