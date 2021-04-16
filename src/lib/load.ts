@@ -1,7 +1,7 @@
 import { load } from "./loaders/loaders";
 
 import { locales } from "./stores";
-import { TranslationData } from "./types";
+import type { TranslationData } from "./types";
 
 /**
  * Low level function to load a translation file.
@@ -55,4 +55,9 @@ export function loadLocale(name: string): Promise<void> {
     }
     console.error("S20n: load: could not load locale " + name + " without having a path to its LanguageFile set in init().");
     return Promise.resolve();
+}
+
+export async function loadIfNotLoaded(v: string): Promise<void> {
+    if (!isLoaded(v)) return loadLocale(v);
+    else return Promise.resolve();
 }

@@ -1,5 +1,5 @@
-import { TranslationData } from "../types";
-import { Loader } from "./loaders";
+import type { TranslationData } from "../types";
+import type { Loader } from "./loaders";
 
 export const JSONLoader: Loader = {
     extension: ".json",

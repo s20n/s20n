@@ -1,18 +1,13 @@
-import { Locales } from "./types";
+import type { Locales } from "./types";
 import { customWritable, CustomWritable } from "./customStores";
 import { noop } from "svelte/internal";
-import { isLoaded, loadLocale } from "./load";
+import { loadIfNotLoaded } from "./load";
 
 /**
  * An object containing all translations for all loaded languages.
  * Languages are only loaded when needed. To preload some languages, use the `loadLocale` function.
  */
 export const locales: CustomWritable<Locales> = customWritable({});
-
-async function loadIfNotLoaded(v: string): Promise<void> {
-    if (!isLoaded(v)) return loadLocale(v);
-    else return Promise.resolve();
-}
 
 /** The currently displayed locale. */
 export const locale: CustomWritable<string> = customWritable("en", noop, loadIfNotLoaded);

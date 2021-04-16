@@ -1,5 +1,5 @@
 
-import { LanguageFile } from "./types";
+import type { LanguageFile } from "./types";
 import { fallbackLocale, locale, locales } from "./stores";
 
 

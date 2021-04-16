@@ -1,5 +1,5 @@
 import { noop, safe_not_equal } from "svelte/internal";
-import { StartStopNotifier, Subscriber, Unsubscriber, Updater, Writable } from "svelte/store";
+import type { StartStopNotifier, Subscriber, Unsubscriber, Updater, Writable } from "svelte/store";
 
 type Invalidator<T> = (value?: T) => void;
 type SubscribeInvalidateTuple<T> = [Subscriber<T>, Invalidator<T>];

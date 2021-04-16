@@ -1,4 +1,4 @@
-import { TranslationData } from "../types";
+import type { TranslationData } from "../types";
 import { JSONLoader } from "./json";
 
 /**

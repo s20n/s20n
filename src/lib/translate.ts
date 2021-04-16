@@ -1,8 +1,8 @@
 import { derived } from "svelte/store";
 import { locale, fallbackLocale, locales } from "./stores";
-import { Locales } from "./types";
-import lodashGet from "lodash.get";
-import { customWritable, CustomWritable } from "./customStores";
+import type { Locales } from "./types";
+import lodashGet from "lodash-es/get";
+import type { customWritable, CustomWritable } from "./customStores";
 
 export type TranslateFunctionType = (path: string, fallback?: string) => string;
 
@@ -40,4 +40,3 @@ function getData(all: Locales, locale: CustomWritable<string>, path: string): st
     }
     return null;
 }
-
