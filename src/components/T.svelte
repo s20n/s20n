@@ -10,9 +10,7 @@
      */
     export let fallback: string = "";
 </script>
-<div>
-    {$t(key, fallback)}
-</div>
+{$t(key, fallback)}
 <!--
     @component
 
@@ -26,5 +24,4 @@
 
     <T key="my.nested.key" fallback="Unfortunately, nothing was found for that key"/>
     ```
-
 -->

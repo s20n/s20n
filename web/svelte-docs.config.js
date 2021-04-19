@@ -21,11 +21,12 @@ module.exports = {
         // directory for files, generated in development mode
         dev: '__DOCS__/dev',
 
-        // directory for builted documentaton
+        // directory for built documentation
         build: '__DOCS__/dist',
     },
 
     aliases:{
+        's20n': './../dist/index.js',
         // Virtual packages
         // <virtual_package_name>: <local_path>,
         //

@@ -39,7 +39,7 @@ async function privateLoadLocale(path: string, name: string): Promise<void> {
  * @returns Wheter the language has been loaded yet.
  */
 export function isLoaded(name: string): boolean {
-    return !!locales.get()[name].data;
+    return !!locales.get()[name]?.data;
 }
 
 /**

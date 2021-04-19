@@ -25,8 +25,6 @@ export const t = derived<ReturnType<typeof customWritable>, TranslateFunctionTyp
         return path;
     }
 });
-/** alias for t (translate) */
-export const _ = t;
 
 function getData(all: Locales, locale: CustomWritable<string>, path: string): string | null {
     const code = locale.get();
@@ -36,7 +34,7 @@ function getData(all: Locales, locale: CustomWritable<string>, path: string): st
         if (v && typeof v === "string") return v;
     }
     else {
-        console.error("S20n: translate: Data not loaded for fallback locale: ", code);
+        console.error("S20n: translate: Data not loaded for locale: ", code);
     }
     return null;
 }
