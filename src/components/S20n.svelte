@@ -15,7 +15,6 @@
 
     The S20n component is a helper that replaces the `initS20n` function.
 
-
     `src/routes/$layout.svelte` (with typescript):
 
     ```svelte
@@ -35,4 +34,5 @@
     <S20n {locales}/>
 
     <--- Something more code --->
+    ```
 -->
