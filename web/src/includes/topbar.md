@@ -2,8 +2,8 @@
     import { initS20n } from 's20n';
 
     initS20n([
-        { path: "/static/translations/es.json", name: "es"},
-        { path: "/static/translations/fr.json", name: "fr"},
+        { path: "./static/translations/es.json", name: "es"},
+        { path: "./static/translations/fr.json", name: "fr"},
         ],
         { readFromNavigator: false });
 </script>

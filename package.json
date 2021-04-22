@@ -5,7 +5,7 @@
   "module": "dist/index.mjs",
   "main": "dist/index.umd.js",
   "types": "dist/ts/index.d.ts",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.1",
   "scripts": {
     "build": "rm -rf ./dist && rollup -c",
     "dev": "rollup -c -w",
