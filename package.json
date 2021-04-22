@@ -16,14 +16,10 @@
     "src",
     "dist"
   ],
-  "dependencies": {
-    "lodash-es": "^4.17.21"
-  },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-typescript": "^6.0.0",
     "@tsconfig/svelte": "^1.0.10",
-    "@types/lodash-es": "^4.17.4",
     "fs-extra": "^9.0.1",
     "glob": "^7.1.6",
     "rollup": "^2.32.0",

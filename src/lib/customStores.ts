@@ -4,6 +4,14 @@ import type { StartStopNotifier, Subscriber, Unsubscriber, Updater, Writable } f
 type Invalidator<T> = (value?: T) => void;
 type SubscribeInvalidateTuple<T> = [Subscriber<T>, Invalidator<T>];
 
+/**
+ *  A writable whose value can be read and that can do things before sending notifications on `set`.
+ *
+ * @param value The start value
+ * @param start Start and stop notifications for subscription
+ * @param beforeSet A function that will be run before notifying subscribers about the new data.
+ * @returns A CustomWritable object.
+ */
 export type CustomWritable<T> = Writable<T> & {get: () => T};
 
 const subscriber_queue: any = [];

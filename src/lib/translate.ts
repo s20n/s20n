@@ -1,40 +1,62 @@
 import { derived } from "svelte/store";
-import { locale, fallbackLocale, locales } from "./stores";
+import { locale, defaultLocale, locales } from "./stores";
 import type { Locales } from "./types";
-import lodashGet from "lodash-es/get";
-import type { customWritable, CustomWritable } from "./customStores";
+import type { customWritable } from "./customStores";
 
-export type TranslateFunctionType = (path: string, fallback?: string) => string;
+/**
+ * The translate function type.
+ *
+ * The translate function takes the untranslated string as argument,
+ * and returns the string translated in the current locale,
+ * or the untranslated string if no translation is found.
+ */
+export type TranslateFunctionType = (untranslated: string) => string;
 
 /**
  * The translate function.
  * Use as `$t` to be reactive to language changes.
+ *
+ * If you do not want reactivity, use `getTranslation` instead.
  */
 export const t = derived<ReturnType<typeof customWritable>, TranslateFunctionType>(locale, (): TranslateFunctionType => {
-    return function (path: string, defaultValue?: string): string {
-        const all = locales.get();
+    return function (untranslated: string): string {
+        const code = locale.get();
 
-        const wanted = getData(all, locale, path);
-        if (wanted) return wanted;
+        if (defaultLocale.get() === code) {
+            return untranslated;
+        }
 
-        const fallback = getData(all, fallbackLocale, path);
-        if (fallback) return fallback;
-
-        if(defaultValue) return defaultValue;
-
-        return path;
+        return getTranslation(untranslated, code);
     }
 });
 
-function getData(all: Locales, locale: CustomWritable<string>, path: string): string | null {
-    const code = locale.get();
-    const data = all[code]?.data;
-    if (data) {
-        const v = lodashGet(data, path);
-        if (v && typeof v === "string") return v;
+/**
+ * Low level function to get the translation of a string in a specific locale.
+ *
+ * It is recommended to use the `<T></T>` component or the `$t` store whenever possible,
+ * but this may be needed from times to times.
+ */
+export function getTranslation(untranslated: string, toLocale: string): string {
+    const loadedData: Locales = locales.get();
+
+    if (!loadedData) {
+        console.error("S20n: getTranslation: no loaded locales.");
+        return untranslated;
     }
-    else {
-        console.error("S20n: translate: Data not loaded for locale: ", code);
+
+    const localeInfo = loadedData[toLocale];
+    const localeData = localeInfo?.data;
+
+    if (!localeInfo || !localeData) {
+        console.warn("S20n: getTranslation: no loaded translations for locale", toLocale);
+        return untranslated;
     }
-    return null;
+
+    const translation = localeData[untranslated];
+    if (!translation) {
+        console.warn(`S20n: getTranslation: locale ${locale.get()} has no translation for "${untranslated}"`);
+        return untranslated;
+    }
+
+    return translation;
 }

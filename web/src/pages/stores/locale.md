@@ -6,13 +6,14 @@ Here's how you would use it to toggle between two languages:
 
 ```example
 <script>
-    import { locale, T } from 's20n';
+    import { locale } from 's20n';
 
     function toggleLanguage() {
         if ($locale === "en") $locale = "fr";
+        else if ($locale === "fr") $locale = "es";
         else $locale = "en";
     }
 </script>
 <p>Current language: {$locale}</p>
-<button on:click="{toggleLanguage}"><T key="stores.locale.toggleLanguageButton"/></button>
+<button on:click="{toggleLanguage}"><s-tr t="Click on this button to loop between languages"/></button>
 ```

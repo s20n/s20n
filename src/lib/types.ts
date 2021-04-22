@@ -8,8 +8,8 @@ export interface LanguageFile {
 
 /** A recursive type for a string tree. Contains the translation data. */
 export interface TranslationData {
-    /** A string or a nested TranslationData object. */
-    [key: string]: TranslationData | string;
+    /** A string TranslationData object. */
+    [key: string]: string;
 }
 
 /** A locale with its data. */
@@ -23,3 +23,13 @@ export interface Locales {
     /** The Locale for the said type. */
     [key: string]: Omit<Locale, "name">;
 }
+
+/**
+ * Make all properties in a type optional.
+ *
+ * Useful for function options.
+ */
+
+export type Optionalize<Type> = {
+    [property in keyof Type]+?: Type[property];
+};
