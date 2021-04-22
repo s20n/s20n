@@ -1,6 +1,6 @@
 <p>
   <a href="https://marr11317.github.io/s20n">
-	<img alt="Ultra-lightweight Svelternationalization library" src="./web/public/icon-full.svg">
+	<img alt="Logo" src="https://marr11317.github.io/s20n/static/s20n.svg">
   </a>
   <a href="https://www.npmjs.com/package/s20n">
     <img src="https://img.shields.io/npm/v/s20n.svg" alt="npm version">
