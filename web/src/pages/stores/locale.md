@@ -4,9 +4,8 @@ The locale store can be used to retrieve or modify the currently displayed langu
 
 Here's how you would use it to toggle between two languages:
 
-```example
 <script>
-    import { locale } from 's20n';
+    import { locale, Tr } from 's20n';
 
     function toggleLanguage() {
         if ($locale === "en") $locale = "fr";
@@ -14,6 +13,19 @@ Here's how you would use it to toggle between two languages:
         else $locale = "en";
     }
 </script>
-<p>Current language: {$locale}</p>
-<button on:click="{toggleLanguage}"><s-tr t="Click on this button to loop between languages"/></button>
+
+<button on:click="{toggleLanguage}"><Tr t="Click on this button to loop between languages"/></button>
+
+```svelte
+<script>
+    import { locale, Tr } from 's20n';
+
+    function toggleLanguage() {
+        if ($locale === "en") $locale = "fr";
+        else if ($locale === "fr") $locale = "es";
+        else $locale = "en";
+    }
+</script>
+
+<button on:click="{toggleLanguage}"><Tr t="Click on this button to loop between languages"/></button>
 ```
