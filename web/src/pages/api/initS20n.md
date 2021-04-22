@@ -1,5 +1,7 @@
 # initS20n
 
+Initialization function. To be called once.
+
 ```html
 <script>
     import { initS20n } from 's20n';

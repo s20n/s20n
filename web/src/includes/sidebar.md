@@ -1,8 +1,8 @@
 * ## [S20n](/)
 * [Getting Started](getting-started)
 * Components
-  * [T (Translate)](components/t)
+  * [Tr (Translate)](components/tr)
 * API
-  * [t (translate)](api/t)
+  * [initS20n](api/initS20n)
 * stores
   * [locale](stores/locale)

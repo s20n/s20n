@@ -71,6 +71,6 @@ Now add translations, create a beautiful language changer component... Have fun 
 
 ## Quick summary
 
-To setup s20n, you'll need the [`initS20n` function](api/initS20n), but afterwards, you'll mostly only use the [`s-tr` (aka translate) component](components/Tr).
+To setup s20n, you'll need the [`initS20n` function](api/initS20n), but afterwards, you'll mostly only use the [`Tr` (aka translate) component](components/Tr).
 
 To toggle between different languages, you'll need the [locale store](stores/locale).
