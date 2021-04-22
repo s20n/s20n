@@ -14,7 +14,7 @@
 
 Ultra lightweight svelternationalization (s20n) library.
 
-## Set up
+## Install
 
 Install it from npm with
 
@@ -24,6 +24,6 @@ npm install --save-dev s20n
 
 Note that as any imported svelte component, [it needs to get imported as a dev dependency](https://github.com/sveltejs/sapper-template#using-external-components).
 
-## Follow the lead
+## Setup
 
 For a complete setup, follow the [getting started guide](https://marr11317.github.io/s20n/getting-started).
