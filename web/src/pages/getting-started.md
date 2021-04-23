@@ -69,9 +69,30 @@ That's great, let's try it:
 
 Now add translations, create a beautiful language changer component... Have fun translating!
 
+## Editor setup
+
+Using [I18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)
+greatly improves translation productivity.
+To set it up, simply include a `.vscode/i18n-ally-custom-framework.yml`
+file with the following content:
+
+```yaml
+languageIds:
+  - javascript
+  - typescript
+  - svelte
+
+usageMatchRegex:
+  - "[^\\w\\d]$t\\(['\"`]({key})['\"`]"
+  - "<Tr t=['\"]({key})['\"]/>"
+
+monopoly: true
+```
+
 ## Quick summary
 
-To setup s20n, you'll need the [`initS20n` function](api/initS20n), but afterwards, you'll mostly only use the [`Tr` (aka translate) component](components/Tr).
+To setup s20n, you'll need the [`initS20n` function](api/initS20n), but afterwards,
+you'll mostly only use the [`Tr` (aka translate) component](components/Tr).
 
 To toggle between different languages, you'll need the [locale store](stores/locale).
 

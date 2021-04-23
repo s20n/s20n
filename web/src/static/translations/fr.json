@@ -1,6 +1,7 @@
 {
-    "My untranslated string": "Ma phrase traduite",
-    "Please S20n, could you translate this string?": "S'il te plaît S20n, pourrais-tu traduire cette phrase?",
-    "Click on this button to loop between languages": "Appuyez sur ce bouton pour changer de langue",
-    "Download language": "Télécharger la langue"
+  "My untranslated string": "Ma phrase traduite",
+  "Please S20n, could you translate this string?": "S'il te plaît S20n, pourrais-tu traduire cette phrase?",
+  "Click on this button to loop between languages": "Appuyez sur ce bouton pour changer de langue",
+  "Download language": "Télécharger la langue",
+  "the text to translate": "Le texte à traduire"
 }
