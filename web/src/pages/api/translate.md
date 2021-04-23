@@ -73,3 +73,5 @@ type T = derived<CustomWritable<string>, (untranslated: string) => string>;
 
 That means whenever the current locale changes, a new translate function is generated,
 and everything that depends on that function is updated.
+
+![S20n Icon](./static/s20n.svg "S20n Icon")

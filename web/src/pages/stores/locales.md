@@ -23,6 +23,6 @@ It's an object of this shape:
 ```
 
 If `data` is empty when a translation is requested,
-the `path` will be loaded with a matching ([Loader]missing link), if one is found.
+the `path` will be loaded with a matching [Loader](api/loaders), if one is found.
 
 ![S20n Icon](./static/s20n.svg "S20n Icon")

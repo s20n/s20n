@@ -1,5 +1,5 @@
 <!-- TODO: add custom element to prevent having to import the element every time. -->
-<svelte:options tag="s-tr"/>
+<!-- <svelte:options tag="s-tr"/> -->
 <script lang="ts">
     import { t as translate } from "../lib/translate";
 
