@@ -1,4 +1,5 @@
 {
     // Disable the errors on html source
-    "MD033": false
+    "no-inline-html": false,
+    "line-length": false
 }

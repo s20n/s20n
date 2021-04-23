@@ -4,6 +4,8 @@ By default, only json data can be used with s20n.
 However, it is possible to use other file types, that allow easier line breaks,
 comments, or more, by registering loaders before calling [`initS20n`](./initS20n).
 
+## Example: JSON5
+
 For example, to use [`json5`](https://json5.org/), you can register a json5 loader.
 
 *Note that since the following code is sandboxed, the top translate button will not work. Use the one on the right instead.*
@@ -36,5 +38,9 @@ For example, to use [`json5`](https://json5.org/), you can register a json5 load
 <Tr t='I am using "JSON5!"'/>
 <button on:click="{toggleLanguage}" style="float: right;">Change Language</button>
 ```
+
+## YAML
+
+You can register a [YAML](https://en.wikipedia.org/wiki/YAML) loader very similarly. See [this REPL](https://svelte.dev/repl/cdb767b8be0041b8b23b2e6d8e4ecc5b?version=3.37.0) for a demonstration.
 
 ![S20n Icon](./static/s20n.svg "S20n Icon")

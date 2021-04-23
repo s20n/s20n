@@ -27,7 +27,7 @@ If you are using **Sapper**, the following is done inside the very similar `_lay
 
 That's it. You can now start translating your app.
 
-S20n provides a handy component, [`Tr`](components/Tr) to do that.
+S20n provides a handy component, [`Tr`](components/Tr), to do that.
 <!-- Since it is used on (almost) every string, it is exported as a [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements), and because of that can be used without being imported as a svelte component. -->
 
 ```html
@@ -50,6 +50,8 @@ create the file `"/static/translations/fr.json`, and put this content inside:
     "My untranslated string": "Ma phrase traduite"
 }
 ```
+
+*Want [YAML](api/loaders#yaml)? [json5](api/loaders#example-json5)? Something else? [Loaders](api/loaders) got you covered!*
 
 Do the same for the spanish translation (in `"/static/translations/es.json`):
 
