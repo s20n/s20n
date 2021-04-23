@@ -1,6 +1,7 @@
+import { defaultLocale } from "./init";
 import { load } from "./loaders/loaders";
 
-import { defaultLocale, locale, locales } from "./stores";
+import { locales } from "./stores";
 import type { TranslationData } from "./types";
 
 /**
@@ -40,7 +41,7 @@ async function privateLoadLocale(path: string, name: string): Promise<void> {
  */
 export function isLoaded(name: string): boolean {
     // return true if it is the untranslated locale
-    if (name === defaultLocale.get()) return true;
+    if (name === defaultLocale) return true;
 
     // Check if there is something at that name, and that it has data.
     return !!locales.get()[name]?.data;

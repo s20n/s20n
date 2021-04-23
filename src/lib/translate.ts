@@ -1,7 +1,8 @@
 import { derived } from "svelte/store";
-import { locale, defaultLocale, locales } from "./stores";
+import { locale, locales } from "./stores";
 import type { Locales } from "./types";
-import type { customWritable } from "./customStores";
+import type { CustomWritable } from "./customStores";
+import { defaultLocale } from "./init";
 
 /**
  * The translate function type.
@@ -18,11 +19,11 @@ export type TranslateFunctionType = (untranslated: string) => string;
  *
  * If you do not want reactivity, use `getTranslation` instead.
  */
-export const t = derived<ReturnType<typeof customWritable>, TranslateFunctionType>(locale, (): TranslateFunctionType => {
+export const t = derived<CustomWritable<string>, TranslateFunctionType>(locale, (): TranslateFunctionType => {
     return function (untranslated: string): string {
         const code = locale.get();
 
-        if (defaultLocale.get() === code) {
+        if (defaultLocale === code) {
             return untranslated;
         }
 

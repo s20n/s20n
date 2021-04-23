@@ -18,3 +18,5 @@ The `Tr` component is the one you'll use the most. It simply translates the give
 <!-- ```properties
 ./../../../../src/components/Tr.svelte
 ``` -->
+
+![S20n Icon](./static/s20n.svg "S20n Icon")

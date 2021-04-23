@@ -14,7 +14,7 @@
 </script>
 
 <button class="topButton" on:click="{toggleLanguage}">
-    <img alt="Translation icon" src="static/language.svg" height="100%" width="100%"/>
+    <img alt="Translation icon" src="./static/language.svg" height="100%" width="100%"/>
 </button>
 <div class="topLanguage">{$locale}</div>
 

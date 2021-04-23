@@ -1,0 +1,4 @@
+{
+    // Disable the errors on html source
+    "MD033": false
+}

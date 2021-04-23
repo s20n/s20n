@@ -15,23 +15,3 @@ export const locales: CustomWritable<Locales> = customWritable({});
  * The locale/language currently displayed to the user.
  */
 export const locale: CustomWritable<string> = customWritable("en", noop, loadLocale);
-
-/**
- * This variable contains the locale that you use inside your markup.
- *
- * **This variable should remain unchanged after the original assignment in `initS20n`.**
- *
- * @example
- *
- * If you write your svelte code like that:
- *
- * ```svelte
- * <Tr t="Ma langue par défaut est le français."/>
- * ```
- *
- * Then you should set `defaultLocale` to "fr".
- *
- * But if you write by default in english, you would need `defaultLocale` to be "en".
- * Note that "en" is the value by default.
- */
-export const defaultLocale: CustomWritable<string> = customWritable("en");

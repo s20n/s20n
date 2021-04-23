@@ -29,3 +29,5 @@ Here's how you would use it to toggle between two languages:
 
 <button on:click="{toggleLanguage}"><Tr t="Click on this button to loop between languages"/></button>
 ```
+
+![S20n Icon](./static/s20n.svg "S20n Icon")

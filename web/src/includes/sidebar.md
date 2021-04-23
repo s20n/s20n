@@ -4,5 +4,7 @@
   * [Tr (Translate)](components/Tr)
 * API
   * [initS20n](api/initS20n)
-* stores
+  * [t (function)](api/translate)
+* [stores](stores/about)
   * [locale](stores/locale)
+  * [locales](stores/locales)

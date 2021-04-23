@@ -1,6 +1,27 @@
 
 import type { LanguageFile, Optionalize } from "./types";
-import { defaultLocale, locale, locales } from "./stores";
+import { locale, locales } from "./stores";
+
+
+/**
+ * This variable contains the locale that you use inside your markup.
+ *
+ * **This variable should remain unchanged after the original assignment in `initS20n`.**
+ *
+ * @example
+ *
+ * If you write your svelte code like that:
+ *
+ * ```svelte
+ * <Tr t="Ma langue par défaut est le français."/>
+ * ```
+ *
+ * Then you should set `defaultLocale` to "fr". (By setting `untranslatedLanguageCode` in `s20nInit`)
+ *
+ * But if you write by default in english, you would need `defaultLocale` to be "en".
+ * Note that "en" is the value by default.
+ */
+ export let defaultLocale: string = "en";
 
 /** Default options passed to the `S20nInit` function.  */
 export class DefaultS20nInitOptions {
@@ -44,8 +65,8 @@ export type S20nInitOptions = Optionalize<DefaultS20nInitOptions>;
  * import { initS20n } from 's20n';
  *
  * initS20n([
- *     { path: "/static/locales/fr.json", name: "fr"},
- *     { path: "/static/locales/it.json", name: "it"},
+ *     { path: "./static/locales/fr.json", name: "fr"},
+ *     { path: "./static/locales/it.json", name: "it"},
  *     // etc.
  * ]);
  * ```
@@ -55,8 +76,8 @@ export type S20nInitOptions = Optionalize<DefaultS20nInitOptions>;
  * import { initS20n } from 's20n';
  *
  * initS20n([
- *     { path: "/static/locales/fr.json", name: "fr"},
- *     { path: "/static/locales/it.json", name: "es"},
+ *     { path: "./static/locales/fr.json", name: "fr"},
+ *     { path: "./static/locales/it.json", name: "es"},
  *     // etc.
  *     ], {
  *          preload: false,
@@ -78,8 +99,8 @@ export async function initS20n(files: LanguageFile[], options: S20nInitOptions =
     Object.assign(defaults, options);
     const { readFromNavigator, untranslatedLanguageCode, preload } = defaults;
 
-    // Set the untranslated language. **THIS IS THE ONLY TIME WHERE IT SHOULD BE DONE**
-    defaultLocale.set(untranslatedLanguageCode);
+    // Set the untranslated language. **THIS IS THE ONLY PLACE WHERE IT SHOULD BE DONE**
+    defaultLocale = untranslatedLanguageCode;
 
     // initialize the locales with null data.
     const localesValue = locales.get();
@@ -94,7 +115,7 @@ export async function initS20n(files: LanguageFile[], options: S20nInitOptions =
     let navigatorLanguageSet = "";
     if (readFromNavigator) {
         const languageNames = files.map((f: LanguageFile) => f.name );
-        languageNames.push(defaultLocale.get());
+        languageNames.push(defaultLocale);
         if (languageNames.includes(navigator.language)) {
             locale.set(navigator.language);
             navigatorLanguageSet = navigator.language;

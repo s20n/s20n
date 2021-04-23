@@ -18,8 +18,8 @@ If you are using **Sapper**, the following is done inside the very similar `_lay
     import { initS20n } from 's20n';
 
     initS20n([
-        { path: "/static/translations/fr.json", name: "fr"},
-        { path: "/static/translations/es.json", name: "es"},
+        { path: "./static/translations/fr.json", name: "fr"},
+        { path: "./static/translations/es.json", name: "es"},
         // etc.
     ]);
 </script>
@@ -74,3 +74,5 @@ Now add translations, create a beautiful language changer component... Have fun 
 To setup s20n, you'll need the [`initS20n` function](api/initS20n), but afterwards, you'll mostly only use the [`Tr` (aka translate) component](components/Tr).
 
 To toggle between different languages, you'll need the [locale store](stores/locale).
+
+![S20n Icon](./static/s20n.svg "S20n Icon")
