@@ -38,9 +38,12 @@ Once again, that's it! No nested keys, no fallback, no trouble.
 
 > But wait, where do I define the translations?
 
-Inside the files you gave at the `initS20n` stage. Notice how there was no english translation registered? That's because your untranslated string **is** the english translation.
+Inside the files you gave at the `initS20n` stage.
+Notice how there was no english translation registered?
+That's because your untranslated string **is** the english translation.
 
-Let's add a french and a spanish translation for your last sentence: create the file `"/static/translations/fr.json`, and put this content inside:
+Let's add a french and a spanish translation for your last sentence:
+create the file `"/static/translations/fr.json`, and put this content inside:
 
 ```json
 {
