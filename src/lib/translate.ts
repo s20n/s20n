@@ -1,8 +1,8 @@
 import { derived } from "svelte/store";
-import { locale, locales } from "./stores";
+import { locale, locales } from "./load";
 import type { Locales } from "./types";
 import type { CustomWritable } from "./customStores";
-import { defaultLocale } from "./init";
+import { sourceLocale } from "./sourceLocale";
 
 /**
  * The translate function type.
@@ -21,23 +21,22 @@ export type TranslateFunctionType = (untranslated: string) => string;
  */
 export const t = derived<CustomWritable<string>, TranslateFunctionType>(locale, (): TranslateFunctionType => {
     return function (untranslated: string): string {
-        const code = locale.get();
-
-        if (defaultLocale === code) {
-            return untranslated;
-        }
-
-        return getTranslation(untranslated, code);
+        return getTranslation(untranslated, locale.get());
     }
 });
 
 /**
  * Low level function to get the translation of a string in a specific locale.
  *
- * It is recommended to use the `<T></T>` component or the `$t` store whenever possible,
+ * It is recommended to use the `<Tr t="..."/>` component or the `$t` store whenever possible,
  * but this may be needed from times to times.
  */
 export function getTranslation(untranslated: string, toLocale: string): string {
+    // Nothing to translate: asking to translate the string into its written language.
+    if (sourceLocale === toLocale) {
+        return untranslated;
+    }
+
     const loadedData: Locales = locales.get();
 
     if (!loadedData) {
@@ -60,4 +59,16 @@ export function getTranslation(untranslated: string, toLocale: string): string {
     }
 
     return translation;
+}
+
+/**
+ * A (template string)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals]
+ * for translations.
+ *
+ *
+ * @param template The array of strings that concatenated, form the template string.
+ * @param substitutions
+ */
+function tr(template: TemplateStringsArray, ...substitutions: (string | number)[]): string {
+    return String.raw(template, substitutions);
 }

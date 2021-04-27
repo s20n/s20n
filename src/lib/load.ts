@@ -1,8 +1,25 @@
-import { defaultLocale } from "./init";
+import { sourceLocale } from "./sourceLocale";
 import { load } from "./loaders/loaders";
 
-import { locales } from "./stores";
+import type { Locales } from "./types";
+import { customWritable, CustomWritable } from "./customStores";
+import { noop } from "svelte/internal";
+
 import type { TranslationData } from "./types";
+
+
+/**
+ * An object containing all translations for all loaded languages.
+ *
+ * By default, all language data is loaded, unless you set `preload` to `false`
+ * or to an array of language codes in `initS20n`.
+ */
+ export const locales: CustomWritable<Locales> = customWritable({});
+
+ /**
+  * The locale/language currently displayed to the user.
+  */
+ export const locale: CustomWritable<string> = customWritable("en", noop, loadLocale);
 
 /**
  * Low level function to load a translation file.
@@ -37,11 +54,11 @@ async function privateLoadLocale(path: string, name: string): Promise<void> {
 /**
  * Query if a language file has been loaded yet.
  * @param name The language code.
- * @returns Wheter the language has been loaded yet.
+ * @returns Whether the language has been loaded yet.
  */
 export function isLoaded(name: string): boolean {
-    // return true if it is the untranslated locale
-    if (name === defaultLocale) return true;
+    // return true if it is the source locale
+    if (name === sourceLocale) return true;
 
     // Check if there is something at that name, and that it has data.
     return !!locales.get()[name]?.data;

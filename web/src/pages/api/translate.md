@@ -8,12 +8,9 @@
 
 The `t` function can be used to translate a string.
 
-Most of the times, you'll use the [`Tr` component](../components/Tr),
-but you might once in a while need it as a function,
-for example if you are showing multiple times the same string,
-and don't want the translation to be read from the data that many times.
+Most of the times, you'll use the [`Tr` component](../components/Tr), but you might once in a while need it as a function. For example if you are showing multiple times the same string, and don't want the translation to be read from the data that many times.
 
-With the [`Tr` component](../components/Tr), you would do that:
+With the [`Tr` component](../components/Tr), you would do something like the following:
 
 ```svelte
 <script>
@@ -56,8 +53,11 @@ What you could do instead is use the `t` function:
     {/each}
 </div>
 
-This way, the translation will only be loaded once from the registry,
-and will be reused for all occurrences.
+This way, the translation will only be loaded once from the registry, and will be reused for all occurrences.
+
+## See also
+
+[Tr (component)](components/Tr), [getTranslation](api/getTranslation)
 
 ## Implementation notes
 

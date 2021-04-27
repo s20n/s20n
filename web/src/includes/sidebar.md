@@ -8,4 +8,5 @@
 * API
   * [initS20n](api/initS20n)
   * [t (function)](api/translate)
+  * [getTranslation](api/getTranslation)
   * [Loaders](api/loaders)

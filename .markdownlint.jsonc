@@ -1,5 +1,6 @@
 {
     // Disable the errors on html source
     "no-inline-html": false,
-    "line-length": false
+    "line-length": false,
+    "first-line-heading": false
 }

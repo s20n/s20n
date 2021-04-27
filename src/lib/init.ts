@@ -1,27 +1,6 @@
-
 import type { LanguageFile, Optionalize } from "./types";
-import { locale, locales } from "./stores";
-
-
-/**
- * This variable contains the locale that you use inside your markup.
- *
- * **This variable should remain unchanged after the original assignment in `initS20n`.**
- *
- * @example
- *
- * If you write your svelte code like that:
- *
- * ```svelte
- * <Tr t="Ma langue par défaut est le français."/>
- * ```
- *
- * Then you should set `defaultLocale` to "fr". (By setting `untranslatedLanguageCode` in `s20nInit`)
- *
- * But if you write by default in english, you would need `defaultLocale` to be "en".
- * Note that "en" is the value by default.
- */
- export let defaultLocale: string = "en";
+import { loadLocale, locale, locales } from "./load";
+import { setSourceLocale } from "./sourceLocale";
 
 /** Default options passed to the `S20nInit` function.  */
 export class DefaultS20nInitOptions {
@@ -33,10 +12,10 @@ export class DefaultS20nInitOptions {
     readFromNavigator = true;
 
     /**
-     * Your source files contain untranslated text.
+     * Your source files contain untranslated text in this language.
      * Use this option to set the language that is to be seen as the "untranslated language".
      */
-    untranslatedLanguageCode = "en";
+    sourceLocale = "en";
 
     /**
      * If set to `true`, during the initialization, S20n will preload all languages provided,
@@ -81,7 +60,7 @@ export type S20nInitOptions = Optionalize<DefaultS20nInitOptions>;
  *     // etc.
  *     ], {
  *          preload: false,
- *          untranslatedLanguageCode: "it",
+ *          sourceLocale: "it",
  *          readFromNavigator: false
  *      }
  * );
@@ -97,10 +76,10 @@ export async function initS20n(files: LanguageFile[], options: S20nInitOptions =
     // Get options
     const defaults = new DefaultS20nInitOptions();
     Object.assign(defaults, options);
-    const { readFromNavigator, untranslatedLanguageCode, preload } = defaults;
+    const { readFromNavigator, sourceLocale, preload } = defaults;
 
     // Set the untranslated language. **THIS IS THE ONLY PLACE WHERE IT SHOULD BE DONE**
-    defaultLocale = untranslatedLanguageCode;
+    setSourceLocale(sourceLocale);
 
     // initialize the locales with null data.
     const localesValue = locales.get();
@@ -115,7 +94,7 @@ export async function initS20n(files: LanguageFile[], options: S20nInitOptions =
     let navigatorLanguageSet = "";
     if (readFromNavigator) {
         const languageNames = files.map((f: LanguageFile) => f.name );
-        languageNames.push(defaultLocale);
+        languageNames.push(sourceLocale);
         if (languageNames.includes(navigator.language)) {
             locale.set(navigator.language);
             navigatorLanguageSet = navigator.language;
@@ -134,8 +113,27 @@ export async function initS20n(files: LanguageFile[], options: S20nInitOptions =
     }
 
     if (!navigatorLanguageSet) {
-        locale.set(untranslatedLanguageCode);
+        locale.set(sourceLocale);
     }
 
-    return;
+    if (preload) {
+        if (typeof preload === "boolean") {
+            // we already know that preload is true
+            const loadPromises: Array<Promise<void>> = [];
+            for (const f of files) {
+                loadPromises.push(loadLocale(f.name));
+            }
+            await Promise.all(loadPromises);
+        }
+        else if (Array.isArray(preload)) {
+            const loadPromises: Array<Promise<void>> = [];
+            for (const p of preload) {
+                loadPromises.push(loadLocale(p));
+            }
+            await Promise.all(loadPromises);
+        }
+        else {
+            console.error('s20n: inits20n: invalid type for option "preload".\n"preload" should be either an array of language codes or a boolean indicating to load all or none.')
+        }
+    }
 }

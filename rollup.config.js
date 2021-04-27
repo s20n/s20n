@@ -36,7 +36,7 @@ export default [
     plugins: [
       svelte({
         preprocess: sveltePreprocess(),
-        customElement: true,
+        // customElement: true,
       }),
       resolve(),
       typescript(),
