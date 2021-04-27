@@ -13,7 +13,7 @@ npm i -D s20n
 If you are using **SvelteKit**, the following is done inside the `$layout.svelte` page.
 If you are using **Sapper**, the following is done inside the very similar `_layout.svelte`.
 
-```html
+```svelte
 <script>
     import { initS20n } from 's20n';
 
@@ -30,7 +30,7 @@ That's it. You can now start translating your app.
 S20n provides a handy component, [`Tr`](components/Tr), to do that.
 <!-- Since it is used on (almost) every string, it is exported as a [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements), and because of that can be used without being imported as a svelte component. -->
 
-```html
+```svelte
 <Tr t="My untranslated string"/>
 ```
 
@@ -63,7 +63,7 @@ Do the same for the spanish translation (in `"/static/translations/es.json`):
 
 That's great, let's try it:
 
-```html
+```svelte
 <script>import { Tr } from 's20n';</script>
 <Tr t="My untranslated string"/>
 ```

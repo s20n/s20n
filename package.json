@@ -7,7 +7,9 @@
   "types": "dist/ts/index.d.ts",
   "version": "1.0.3",
   "scripts": {
-    "build": "rm -rf ./dist && rollup -c",
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && rollup -c",
+    "build:prod": "npm run clean && rollup -c --environment INCLUDE_DEPS,BUILD:production",
     "dev": "rollup -c -w",
     "validate": "svelte-check",
     "prepublishOnly": "npm run build"

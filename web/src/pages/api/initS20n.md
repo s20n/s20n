@@ -2,7 +2,12 @@
 
 Initialization function. To be called once.
 
-```html
+```svelte
+initS20n(languages, options);
+```
+
+## Example
+```svelte
 <script>
     import { initS20n } from 's20n';
 

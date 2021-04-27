@@ -12,7 +12,7 @@ Ultra-lightweight and configurable svelternationalization (s20n) library.
 
 With S20n, translating is as easy as
 
-```html
+```svelte
 <Tr t="Please S20n, could you translate this string?"/>
 ```
 

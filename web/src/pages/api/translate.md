@@ -41,14 +41,14 @@ What you could do instead is use the `t` function:
 </script>
 
 <div style="display: flex; align-items: center;">
-    {#each ["fr", "en", "es", "it"] as l}
+    {#each ["fr", "en", "es", "it", "ar"] as l}
         <button style="margin-right: 5px;">{d} {l}</button>
     {/each}
 </div>
 ```
 
 <div style="display: flex; align-items: center;">
-    {#each ["fr", "en", "es", "it"] as l}
+    {#each ["fr", "en", "es", "it", "ar"] as l}
         <button style="margin-right: 5px;">{d} {l}</button>
     {/each}
 </div>

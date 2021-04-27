@@ -7,7 +7,7 @@
 
 The `Tr` component is the one you'll use the most. It simply translates the given string.
 
-```html
+```svelte
 <Tr t="My untranslated string"/>
 ```
 
