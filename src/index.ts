@@ -1,4 +1,5 @@
 export { default as Tr } from "./components/Tr.svelte";
+export { default as PowerTranslate } from "./components/PowerTranslate.svelte";
 
 export { registerLoader } from "./lib/loaders/loaders";
 export type { Loader } from "./lib/loaders/loaders";

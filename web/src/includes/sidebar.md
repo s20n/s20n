@@ -2,6 +2,7 @@
 * [Getting Started](getting-started)
 * Components
   * [Tr (Translate)](components/Tr)
+  * [Power Translate](components/PowerTranslate)
 * [stores](stores/about)
   * [locale](stores/locale)
   * [locales](stores/locales)
