@@ -2,7 +2,7 @@ import { sourceLocale } from "./sourceLocale";
 import { load } from "./loaders/loaders";
 
 import type { Locales } from "./types";
-import { customWritable, CustomWritable } from "./customStore";
+import { CustomWritable } from "./customStore";
 import { noop } from "svelte/internal";
 
 import type { TranslationData } from "./types";
@@ -14,12 +14,12 @@ import type { TranslationData } from "./types";
  * By default, all language data is loaded, unless you set `preload` to `false`
  * or to an array of language codes in `initS20n`.
  */
- export const locales: CustomWritable<Locales> = customWritable({});
+ export const locales: CustomWritable<Locales> = new CustomWritable({});
 
  /**
   * The locale/language currently displayed to the user.
   */
- export const locale: CustomWritable<string> = customWritable("en", noop, loadLocale);
+ export const locale: CustomWritable<string> = new CustomWritable("en", noop, loadLocale);
 
 /**
  * Low level function to load a translation file.

@@ -1,5 +1,4 @@
-import { customWritable } from "./customStore";
-import type { CustomWritable } from "./customStore";
+import { CustomWritable } from "./customStore";
 import type { TranslationData } from "./types";
 
 /** Describes a string and a locale in which it has no translation */
@@ -19,4 +18,4 @@ type MissingData = {
 }
 
 export const missingTranslations: CustomWritable<MissingData>
-     = customWritable({last: { locale: "", untranslated: "" }})
+     = new CustomWritable({last: { locale: "", untranslated: "" }})
