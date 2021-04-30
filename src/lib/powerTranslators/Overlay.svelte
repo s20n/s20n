@@ -1,16 +1,13 @@
 <script lang="ts">
-    import { saveAs } from 'file-saver';
-
-    function s() {
-        saveAs(new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"}), "helloworld.json");
-    }
+	import { missingTranslations } from './../missingTranslations';
+    import { downloadTranslations } from "./helpers";
+    let showOverlay = false;
 </script>
-
-<div class:hidden={true}>
+<div class:hidden="{showOverlay}">
     <div class = "overlay"></div>
     <div class="contents">
-        <button on:click={s}>
-            Download new data
+        <button on:click={downloadTranslations}>
+            Download updated data for current locale.
         </button>
     </div>
 </div>

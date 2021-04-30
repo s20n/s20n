@@ -1,7 +1,6 @@
 import type { LanguageFile, Optionalize } from "./types";
 import { loadLocale, locale, locales } from "./load";
 import { setSourceLocale } from "./sourceLocale";
-import { setPowerTranslateMode } from "./translate";
 
 /** Default options passed to the `S20nInit` function.  */
 export class DefaultS20nInitOptions {
@@ -73,8 +72,6 @@ export async function initS20n(files: LanguageFile[], options: S20nInitOptions =
         console.error("s20n: initS20n: argument 'files' is empty.");
         return;
     }
-
-    setPowerTranslateMode(true);
 
     // Get options
     const defaults = new DefaultS20nInitOptions();

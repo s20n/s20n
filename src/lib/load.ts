@@ -2,7 +2,7 @@ import { sourceLocale } from "./sourceLocale";
 import { load } from "./loaders/loaders";
 
 import type { Locales } from "./types";
-import { customWritable, CustomWritable } from "./customStores";
+import { customWritable, CustomWritable } from "./customStore";
 import { noop } from "svelte/internal";
 
 import type { TranslationData } from "./types";

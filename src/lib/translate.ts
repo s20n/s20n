@@ -1,41 +1,9 @@
 import { derived } from "svelte/store";
 import { locale, locales } from "./load";
 import type { Locales } from "./types";
-import type { CustomWritable } from "./customStores";
+import type { CustomWritable } from "./customStore";
 import { sourceLocale } from "./sourceLocale";
-
-export let powerTranslateMode: boolean = false;
-
-function download(element: HTMLAnchorElement) {
-    console.log(locales.get()[locale.get()]?.data);
-    element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(JSON.stringify(locales.get()[locale.get()])));
-    element.setAttribute('download', locale.get() + ".json");
-    // element.click();
-}
-
-export function setPowerTranslateMode(v: boolean) {
-    powerTranslateMode = v;
-    if (document) {
-        let downloadButton = document.getElementById("s20n-downloadbutton-ai8h4rv23qm1i5") as HTMLAnchorElement;
-        if (!downloadButton) {
-            downloadButton = document.createElement("a");
-            downloadButton.id = "s20n-downloadbutton-ai8h4rv23qm1i5";
-            downloadButton.style.position = "fixed";
-            downloadButton.style.bottom = "20px";
-            downloadButton.style.right = "20px";
-            downloadButton.style.borderRadius = "10px";
-            downloadButton.style.padding = "10px";
-            downloadButton.style.backgroundColor = "blue";
-            downloadButton.style.textDecoration = "none";
-            downloadButton.style.cursor = "pointer";
-            downloadButton.style.color = "white";
-            downloadButton.addEventListener("click", () => download(downloadButton))
-            downloadButton.textContent = "Download updated json file for current language.";
-            document.body.appendChild(downloadButton);
-        }
-        downloadButton.style.display = v ? "block" : "none";
-    }
-}
+import { missingTranslations } from "./missingTranslations";
 
 /**
  * The translate function type.
@@ -57,6 +25,8 @@ export const t = derived<CustomWritable<string>, TranslateFunctionType>(locale, 
         return getTranslation(untranslated, locale.get());
     }
 });
+
+let MAX_RECURSE = 3;
 
 /**
  * Low level function to get the translation of a string in a specific locale.
@@ -87,14 +57,32 @@ export function getTranslation(untranslated: string, toLocale: string): string {
 
     const translation = localeData[untranslated];
     if (!translation) {
-        if (powerTranslateMode) {
-            const newTranslation = window.prompt(`No translation found in locale ${locale.get()} for string "${untranslated}"
-Type in this box to add one.`);
-            localeData[untranslated] = newTranslation;
+        const missingData = missingTranslations.get();
+        if (!missingData[toLocale]) {
+            missingData[toLocale] = {};
         }
-        else {
-            console.warn(`S20n: getTranslation: locale ${locale.get()} has no translation for "${untranslated}"`);
+        const currentLocaleMissingData = missingData[toLocale];
+
+        // If it was not already added to the untranslated data list.
+        if (typeof currentLocaleMissingData[untranslated] === "string") {
+            console.warn(`S20n: getTranslation: locale ${toLocale} has no translation for "${untranslated}"`);
+            return untranslated;
         }
+
+        currentLocaleMissingData[untranslated] = "";
+        missingData.last = {
+            locale: toLocale,
+            untranslated: untranslated,
+        };
+
+        // notify the subscribers
+        missingTranslations.set(missingData);
+
+        if (MAX_RECURSE > 0) {
+            MAX_RECURSE--;
+            return getTranslation(untranslated, toLocale);
+        }
+        MAX_RECURSE++;
         return untranslated;
     }
 
