@@ -42,9 +42,9 @@ export class CustomWritable<T> {
 	/**
 	 * Set the value and inform subscribers.
 	 *
-	 * Note that this function is async if a function was given to `beforeSet`.
+	 * Note that this function returns a promise if a function was given to `beforeSet`.
 	 */
-	public set(new_value: T): void | Promise<void> {
+	public set(new_value: T): void {
 		if (safe_not_equal(this.value, new_value)) {
 			if (this.beforeSet) this.beforeSet(new_value).then(() => this.privateSet(new_value));
 			else this.privateSet(new_value);

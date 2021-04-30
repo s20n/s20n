@@ -1,6 +1,6 @@
 <script lang="ts">
     import { missingTranslations } from './../missingTranslations';
-import { addTranslation } from './helpers';
+    import { addTranslation } from './helpers';
 
     $: {
         if ($missingTranslations.last.untranslated) {
@@ -8,7 +8,7 @@ import { addTranslation } from './helpers';
 Enter translation for string:
 ${$missingTranslations.last.untranslated}`);
 
-            addTranslation($missingTranslations.last.locale, $missingTranslations.last.untranslated, newTranslation);
+            if (newTranslation) addTranslation($missingTranslations.last.locale, $missingTranslations.last.untranslated, newTranslation);
         }
     }
 </script>
