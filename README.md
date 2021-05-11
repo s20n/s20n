@@ -1,6 +1,6 @@
 <p>
   <a href="https://marr11317.github.io/s20n">
-	<img alt="Logo" src="https://marr11317.github.io/s20n/static/s20n.svg">
+	<img alt="Logo" src="https://s20n.github.io/s20n/static/s20n.svg">
   </a>
   <a href="https://www.npmjs.com/package/s20n">
     <img src="https://img.shields.io/npm/v/s20n.svg" alt="npm version">
@@ -26,4 +26,4 @@ Note that as any imported svelte component, [it needs to get imported as a dev d
 
 ## Setup
 
-For a complete setup, follow the [getting started guide](https://marr11317.github.io/s20n/getting-started).
+For a complete setup, follow the [getting started guide](https://s20n.github.io/s20n/getting-started).
