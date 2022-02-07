@@ -1,3 +1,7 @@
+# Deprecation Notice!
+
+## S20n is now deprecated, you should not use it in your projects. There are many available alternatives. Pick one.
+
 <p>
   <a href="https://marr11317.github.io/s20n">
 	<img alt="Logo" src="https://s20n.github.io/s20n/static/s20n.svg">
